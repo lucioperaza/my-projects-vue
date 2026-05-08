@@ -1,14 +1,19 @@
 <script setup>
 import { useRouter } from 'vue-router'
 import { useAuthStore } from '@/stores/auth'
+import { useProjectsStore } from '@/stores/projects'
 import AppButton from './AppButton.vue'
+import { useTasksStore } from '@/stores/tasks'
+
 const auth = useAuthStore()
 const router = useRouter()
+const projects = useProjectsStore()
+const tasks = useTasksStore()
 
 async function onLogout() {
   await auth.logout()
-  // projects.reset()
-  // tasks.reset()
+  projects.reset()
+  tasks.reset()
   router.replace('/login')
 }
 
